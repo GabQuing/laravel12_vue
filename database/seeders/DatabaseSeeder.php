@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -26,5 +27,14 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'created_at' => Date::now(),
         ]);
+
+        Product::create([
+            'name' => 'Lorem Ipsum',
+            'category' => 'Random',
+            'description' => 'is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+            'created_by' => 1,
+            'created_at' => Date::now(),
+        ]);
     }
+
 }
