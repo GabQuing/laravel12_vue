@@ -17,4 +17,9 @@ class Product extends Model
         'date_time',
         'created_by',
     ];
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class,'created_by');
+    }
 }
