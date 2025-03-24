@@ -73,5 +73,24 @@ export default {
             },
         },
     },
-    plugins: [require('tailwindcss-animate')],
+    plugins: [
+        require('tailwindcss-animate'),
+        function ({ addComponents }) {
+            addComponents({
+                '.custom-scrollbar::-webkit-scrollbar': {
+                    height: '5px',
+                },
+                '.custom-scrollbar::-webkit-scrollbar-track': {
+                    background: 'hsl(var(--sidebar-background))', 
+                },
+                '.custom-scrollbar::-webkit-scrollbar-thumb': {
+                    background: 'hsl(var(--sidebar-primary))',
+                    borderRadius: '4px',
+                },
+                '.custom-scrollbar::-webkit-scrollbar-thumb:hover': {
+                    background: 'hsl(var(--sidebar-border))',
+                },
+            });
+        },
+    ],
 };
