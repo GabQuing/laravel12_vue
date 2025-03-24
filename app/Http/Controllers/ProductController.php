@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ProductController extends Controller
 {
@@ -46,6 +49,34 @@ class ProductController extends Controller
     {
         $product->delete();
         return back()->with('success', 'Product deleted successfully');
+    }
+
+    public function create(): Response
+    {
+        $categories = Product::select('category')->distinct()->pluck('category');
+            return Inertia::render('CreateProduct', [
+                'categories' => $categories
+            ]);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'category' => 'required|string',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            
+        ]);
+
+        Product::create([
+            'category' => $request->category,
+            'name' => $request->name,
+            'description' => $request->description,
+            'created_by' => Auth::id(),
+            'created_at' => Date::now(),
+        ]);
+
+        return redirect()->route('product')->with('success', 'Product created successfully.');
     }
     
 }
