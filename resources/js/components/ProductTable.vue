@@ -32,9 +32,7 @@ watch([searchQuery, selectedCategory], ([newSearch, newCategory]) => {
 <template>
     <div class="px-4 py-8 mx-auto space-y-8 rounded-xl border border-sidebar-border/70 dark:border-sidebar-border sm:container sm:rounded-lg sm:px-6 lg:px-8">
         <div class="flex flex-wrap items-center justify-between">
-            <a href="">
-                <Button>Create</Button>
-            </a>
+            <Button @click="router.visit('/product/create')">Create</Button>
             <div class="relative p-1 overflow-hidden pointer-events-auto w-52 md:max-w-96">
                 <input 
                     v-model="searchQuery"
