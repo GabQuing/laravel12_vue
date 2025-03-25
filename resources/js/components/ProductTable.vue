@@ -20,6 +20,10 @@ const deleteProduct = (id) => {
     }
 };
 
+const editProduct = (product) => {
+    router.get(route('product.edit', product.id));
+};
+
 const searchQuery = ref(props.search || '');
 const selectedCategory = ref(props.selectedCategory || '');
 
@@ -69,7 +73,7 @@ watch([searchQuery, selectedCategory], ([newSearch, newCategory]) => {
                         <td class="px-6 py-3 text-sm text-gray-500 whitespace-nowrap">{{ product.creator ? product.creator.name : 'N/A' }}</td>
                         <td class="px-6 py-3 text-sm text-gray-500 whitespace-nowrap">
                             <div class="flex items-center gap-2">
-                                <Button>Edit</Button>
+                                <Button @click="editProduct(product)">Edit</Button>
                                 <Button variant="destructive" @click="deleteProduct(product.id)">Delete</Button>
                             </div>
                         </td>

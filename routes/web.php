@@ -17,6 +17,8 @@ Route::get('product', [ProductController::class, 'index'])->middleware(['auth', 
 Route::delete('/product/{product}', [ProductController::class, 'destroy'])->middleware(['auth', 'verified'])->name('product.destroy');
 Route::get('/product/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('product.create');
 Route::post('/products', [ProductController::class, 'store'])->middleware(['auth', 'verified']);
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->middleware(['auth', 'verified'])->name('product.edit');
+Route::put('/product/{id}', [ProductController::class, 'update']);
 
 
 require __DIR__.'/settings.php';

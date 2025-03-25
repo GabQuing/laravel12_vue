@@ -78,5 +78,13 @@ class ProductController extends Controller
 
         return redirect()->route('product')->with('success', 'Product created successfully.');
     }
+
+    public function edit($id): Response
+    {
+        $product = Product::findOrFail($id);
+        return Inertia::render('EditProduct', [
+            'product' => $product
+        ]);
+    }
     
 }
